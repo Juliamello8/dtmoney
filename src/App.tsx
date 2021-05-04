@@ -1,7 +1,13 @@
 import { Dashboard } from './components/Dashboard/Index';
 import { Header } from './components/Header/Index';
-import { GlobalStyle } from './styles/global'
 import { createServer } from 'miragejs'
+import { useState } from 'react';
+import Modal from 'react-modal';
+
+import { GlobalStyle } from './styles/global'
+import { NewTransactionModal } from './components/NewTransactionModal/Index';
+
+//Modal.setAppElement('root'); //adiciona o modal na div root e não no início do html e melhora acessibilidade
 
 createServer({
     routes() {
@@ -22,11 +28,26 @@ createServer({
     }
 })
 
+
 export function App() {
+    const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false)
+
+    function handleOpenNewTransactionModal() {
+        setIsNewTransactionModalOpen(true);
+    }
+
+    function handleCloseNewTransactionModal() {
+        setIsNewTransactionModalOpen(false);
+    }
+
     return (
         <>
-            <Header />
+            <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
             <Dashboard />
+            <NewTransactionModal
+                isOpen={isNewTransactionModalOpen}
+                onRequestClose={handleCloseNewTransactionModal}
+            />
             <GlobalStyle />
         </>
     );
