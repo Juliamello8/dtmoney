@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 
 import { GlobalStyle } from './styles/global'
 import { NewTransactionModal } from './components/NewTransactionModal/Index';
+import { TransactionsProvider } from './contexts/TransactionsContext';
 
 //adiciona o modal na div root e não no início do html e melhora acessibilidade
 Modal.setAppElement('#root');
@@ -21,7 +22,7 @@ export function App() {
     }
 
     return (
-        <>
+        <TransactionsProvider>
             <Header onOpenNewTransactionModal={handleOpenNewTransactionModal} />
             <Dashboard />
             <NewTransactionModal
@@ -29,6 +30,6 @@ export function App() {
                 onRequestClose={handleCloseNewTransactionModal}
             />
             <GlobalStyle />
-        </>
+        </TransactionsProvider>
     );
 }
