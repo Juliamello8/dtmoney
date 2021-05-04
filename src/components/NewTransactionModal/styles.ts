@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { darken, transparentize } from 'polished'
 
-export const Container = styled.div`
+export const Container = styled.form`
     h2{
         color: var(--text-title);
         font-size: 1.5rem;
@@ -84,7 +84,7 @@ export const RadioBox = styled.button<RadioBoxProps>`
     transition: border-color 0.2s;
 
     &:hover{
-        border-color: darken(0.1, '#d7d7d7');
+        border-color: darken(1, #d7d7d7);
     }
 
     img{
